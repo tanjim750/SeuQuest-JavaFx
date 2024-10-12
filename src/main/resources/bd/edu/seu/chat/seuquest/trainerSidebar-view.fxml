@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="TOP_CENTER" prefHeight="744.0" prefWidth="315.0" style="-fx-background-color: white;" stylesheets="@values/style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.edu.seu.chat.seuquest.TrainerSidebarController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="55.0">
+         <children>
+            <ImageView fitHeight="43.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 1;">
+               <image>
+                  <Image url="@values/images/logo.png" />
+               </image>
+            </ImageView>
+            <Label text="SeuQuest">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin>
+      </HBox>
+      <ImageView fx:id="profle" fitHeight="99.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 1;">
+         <image>
+            <Image url="@values/images/profile.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="name" prefHeight="23.0" text="Tanjim Abubokor" textAlignment="CENTER">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Text fx:id="userRole" strokeType="OUTSIDE" strokeWidth="0.0" text="Trainer">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Text>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Button fx:id="chatBtn" mnemonicParsing="false" onAction="#onClickChatBtn" prefHeight="34.0" prefWidth="35.0" styleClass="chat-icon-btn">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="trainingBtn" layoutX="127.0" layoutY="22.0" mnemonicParsing="false" onAction="#onClickTrainBtn" prefHeight="34.0" prefWidth="35.0" styleClass="training-icon-btn">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#onClickLogoutBtn" prefHeight="36.0" prefWidth="36.0" styleClass="logout-icon-btn" />
+         </children>
+      </HBox>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="441.0" prefWidth="315.0">
+         <VBox.margin>
+            <Insets top="50.0" />
+         </VBox.margin>
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="265.0" prefWidth="315.0" />
+            <HBox alignment="TOP_CENTER" prefHeight="77.0">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onClickGithubBtn" prefHeight="48.0" prefWidth="50.0" styleClass="github-btn">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button layoutX="302.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickWebsiteBtn" prefHeight="48.0" prefWidth="50.0" styleClass="website-btn">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button layoutX="330.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickLinkedinBtn" prefHeight="40.0" prefWidth="40.0" styleClass="linkedin-btn">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright © 2024 Tanjim Abubokor.">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Text>
+            <Text layoutX="50.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All rights reserved." />
+         </children>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </VBox>
+   </children>
+   <padding>
+      <Insets top="20.0" />
+   </padding>
+</VBox>

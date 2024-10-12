@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="anchorPane" prefHeight="744.0" prefWidth="800.0" styleClass="vbox-background" stylesheets="@values/style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.edu.seu.chat.seuquest.RegistrationController">
+    <children>
+        <HBox prefHeight="744.0" prefWidth="800.0" stylesheets="@values/style/style.css">
+            <children>
+                <VBox alignment="TOP_CENTER" prefHeight="744.0" prefWidth="333.0" style="-fx-background-color: rgba(169, 169, 169, 0.5);">
+                    <children>
+                        <ImageView fitHeight="209.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 1;">
+                            <image>
+                                <Image url="@values/images/logo.png" />
+                            </image>
+                        </ImageView>
+                        <Label text="SeuQuest">
+                            <VBox.margin>
+                                <Insets top="30.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ask your questions about southeast university">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="427.0" prefWidth="317.0">
+                            <VBox.margin>
+                                <Insets top="50.0" />
+                            </VBox.margin>
+                            <children>
+                                <HBox alignment="TOP_CENTER" prefHeight="190.0" prefWidth="317.0" />
+                                <HBox alignment="TOP_CENTER" prefHeight="77.0" prefWidth="640.0">
+                                    <VBox.margin>
+                                        <Insets top="20.0" />
+                                    </VBox.margin>
+                                    <children>
+                                        <Button fx:id="githubBtn" mnemonicParsing="false" onAction="#onClickGithubBtn" prefHeight="48.0" prefWidth="50.0" styleClass="github-btn">
+                                            <HBox.margin>
+                                                <Insets right="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button id="websiteBtn" fx:id="websiteBtn" layoutX="302.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickWebsiteBtn" prefHeight="48.0" prefWidth="50.0" styleClass="website-btn">
+                                            <HBox.margin>
+                                                <Insets right="10.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button id="linkedinBtn" fx:id="linkedinBtn" layoutX="330.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickLinkedinBtn" prefHeight="48.0" prefWidth="50.0" styleClass="linkedin-btn" />
+                                    </children>
+                                </HBox>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright © 2024 Tanjim Abubokor.">
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </Text>
+                                <Text layoutX="50.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All rights reserved." />
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0" top="20.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
+                </VBox>
+                <VBox alignment="TOP_CENTER" prefHeight="744.0" prefWidth="499.0">
+                    <children>
+                        <VBox id="loginVBox" alignment="CENTER" prefHeight="770.0" prefWidth="483.0">
+                            <children>
+                                <Label text="Registration">
+                                    <font>
+                                        <Font name="System Bold" size="24.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="30.0" top="20.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="nameField" prefHeight="37.0" prefWidth="393.0" promptText="Full Name" styleClass="input-text-field">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font size="17.0" />
+                                    </font>
+                                </TextField>
+                        <TextField fx:id="usernameField" layoutX="50.0" layoutY="269.0" prefHeight="37.0" prefWidth="393.0" promptText="Username" styleClass="input-text-field">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <PasswordField fx:id="passwordField" promptText="Password" styleClass="input-text-field">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </PasswordField>
+                        <PasswordField fx:id="secretKey" layoutX="50.0" layoutY="348.0" promptText="Secret Key" styleClass="input-text-field">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </PasswordField>
+                        <VBox prefHeight="115.0" prefWidth="393.0" spacing="5.0" style="-fx-background-color: #e6e1e1; -fx-background-radius: 10;">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <HBox alignment="CENTER" prefWidth="200.0" spacing="30.0">
+                                 <children>
+                                    <VBox prefHeight="49.0" prefWidth="72.0">
+                                       <children>
+                                          <HBox alignment="CENTER" spacing="5.0">
+                                             <children>
+                                                <RadioButton fx:id="userProfile1" mnemonicParsing="false" selected="true" style="-fx-background-color: white; -fx-background-radius: 50;">
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                   <toggleGroup>
+                                                      <ToggleGroup fx:id="profiles" />
+                                                   </toggleGroup>
+                                                </RadioButton>
+                                                <ImageView fitHeight="49.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@values/images/profiles/boy.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <HBox alignment="CENTER" spacing="5.0">
+                                       <children>
+                                          <RadioButton fx:id="userProfile2" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 50;" toggleGroup="$profiles">
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </RadioButton>
+                                          <ImageView fitHeight="49.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@values/images/profiles/girl.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                    <VBox prefHeight="49.0" prefWidth="72.0">
+                                       <children>
+                                          <HBox alignment="CENTER" spacing="5.0">
+                                             <children>
+                                                <RadioButton fx:id="userProfile3" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 50;" toggleGroup="$profiles">
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <ImageView fitHeight="49.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@values/images/profiles/boy2.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <VBox prefHeight="49.0" prefWidth="72.0" />
+                              <HBox alignment="CENTER" layoutX="20.0" layoutY="20.0" prefWidth="200.0" spacing="30.0">
+                                 <children>
+                                    <VBox prefHeight="49.0" prefWidth="72.0">
+                                       <children>
+                                          <HBox alignment="CENTER" spacing="5.0">
+                                             <children>
+                                                <RadioButton fx:id="userProfile4" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 50;" toggleGroup="$profiles">
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <ImageView fitHeight="49.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@values/images/profiles/girl3.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <HBox alignment="CENTER" spacing="5.0">
+                                       <children>
+                                          <RadioButton fx:id="userProfile5" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 50;" toggleGroup="$profiles">
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </RadioButton>
+                                          <ImageView fitHeight="49.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@values/images/profiles/guest-user.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                    <VBox prefHeight="49.0" prefWidth="72.0">
+                                       <children>
+                                          <HBox alignment="CENTER" spacing="5.0">
+                                             <children>
+                                                <RadioButton fx:id="userProfile6" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 50;" toggleGroup="$profiles">
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <ImageView fitHeight="49.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@values/images/profiles/tanjim.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Label fx:id="warnigLable" style="-fx-background-color: #e6e1e1;" textFill="#c32727">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                                <Button id="registrationBtn" fx:id="signUpBtn" mnemonicParsing="false" onAction="#onClickRegistrationBtn" prefHeight="41.0" prefWidth="410.0" styleClass="chat-button" text="Sign Up">
+                                    <VBox.margin>
+                                        <Insets top="30.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold Italic" size="20.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets bottom="50.0" right="20.0" />
+                                    </padding>
+                                </Button>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="20.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <Hyperlink id="loginBtn" fx:id="loginBtn" onAction="#OnClickLoginBtn" text="Click here" />
+                        <Hyperlink id="homeBtn" fx:id="homeBtn" layoutX="210.0" layoutY="542.0" onAction="#OnClickHomeBtn" text="Home" />
+                            </children>
+                            <padding>
+                                <Insets left="40.0" right="50.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

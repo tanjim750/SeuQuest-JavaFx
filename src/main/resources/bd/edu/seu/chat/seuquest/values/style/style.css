@@ -1,0 +1,211 @@
+.chat-button {
+    -fx-padding: 10 20; /* Padding: top-right-bottom-left */
+    -fx-background-color: #cfef00; /* Background color */
+    -fx-border-radius: 100px; /* Border radius for rounded corners */
+    -fx-background-radius: 100px; /* Background radius */
+    -fx-border-color: transparent; /* Border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-font-size: 15px; /* Font size */
+    -fx-alignment: center; /* Align content to center */
+    -fx-display: inline-flex; /* JavaFX doesn't support display: flex, but `inline-flex` can work similarly for simple alignment */
+}
+
+.login-button {
+    -fx-padding: 10 20; /* Padding: top-right-bottom-left */
+    -fx-background-color: #3d3b3b; /* Background color */
+    -fx-border-radius: 100px; /* Border radius for rounded corners */
+    -fx-background-radius: 100px; /* Background radius */
+    -fx-border-color: transparent; /* Border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-font-size: 15px; /* Font size */
+    -fx-alignment: center; /* Align content to center */
+    -fx-display: inline-flex; /* JavaFX doesn't support display: flex, but `inline-flex` can work similarly for simple alignment */
+}
+
+.vbox-background {
+    -fx-background-image: url("../images/vbox-background0.5.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+.vbox-background2 {
+    -fx-background-image: url("../images/background2.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+.input-text-field {
+    -fx-background-color: #283542; /* Background color */
+    -fx-border-color: transparent; /* Border color */
+    -fx-border-radius: 12px; /* Border radius */
+    -fx-background-radius: 12px; /* Background radius */
+    -fx-padding: 9px; /* Padding */
+    -fx-text-fill: white; /* Text color */
+    -fx-alignment: center-left; /* Align text content to the center-left */
+}
+
+.github-btn {
+    -fx-background-image: url("../images/github.jpeg"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+.linkedin-btn {
+    -fx-background-image: url("../images/linkedin.png"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+.website-btn {
+    -fx-background-image: url("../images/website.jpeg"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+
+.chat-icon-btn {
+    -fx-background-image: url("../images/chat-icon.png"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+.logout-icon-btn {
+    -fx-background-image: url("../images/logout-icon.png"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+.adduser-icon-btn {
+    -fx-background-image: url("../images/add-user.png"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+.addkey-icon-btn {
+    -fx-background-image: url("../images/secret-key.png"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+.dashboard-icon-btn {
+    -fx-background-image: url("../images/dashboard-icon.png"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+.home-icon-btn {
+    -fx-background-image: url("../images/home-icon.png"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+.delete-icon-btn {
+    -fx-background-image: url("../images/delete-icon.png"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+.training-icon-btn {
+    -fx-background-image: url("../images/training-icon.png"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+.login-icon-btn {
+    -fx-background-image: url("../images/login-icon.png"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+.registration-icon-btn {
+    -fx-background-image: url("../images/ragistration-icon.png"); /* Set the background image */
+    -fx-background-repeat: no-repeat; /* Prevent repeating the image */
+    -fx-background-size: cover; /* Scale image to cover the entire button */
+    -fx-background-position: center; /* Center the image */
+    -fx-border-color: transparent; /* Remove any default borders */
+    -fx-background-color: transparent; /* Remove default button color */
+    -fx-text-fill: white; /* Set text color if needed */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+
+/* Hides both horizontal and vertical scroll bars in ScrollPane */
+.scroll-pane .scroll-bar:vertical, .scroll-pane .scroll-bar:horizontal {
+    -fx-opacity: 0; /* Makes scroll bars invisible */
+    -fx-padding: 0; /* Removes any extra padding */
+    -fx-max-width: 0;  /* Hide vertical scroll bar */
+    -fx-max-height: 0; /* Hide horizontal scroll bar */
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+
+.scroll-pane {
+    -fx-background:  #ebeff2; /* Changes the background of the entire ScrollPane */
+}
+
+/* Change the background color inside the viewport */
+.scroll-pane .viewport {
+    -fx-background-color:  #ebeff2; /* Change this to your desired color */
+}
