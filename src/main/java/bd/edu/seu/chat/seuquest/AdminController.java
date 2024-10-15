@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -172,18 +173,18 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    void onClickGithubBtn(ActionEvent event) {
-
+    public void onClickGithubBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://github.com/tanjim750");
     }
 
     @FXML
-    void onClickLinkedinBtn(ActionEvent event) {
-
+    public void onClickWebsiteBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://tanjim-abubokor.github.io/");
     }
 
     @FXML
-    void onClickWebsiteBtn(ActionEvent event) {
-
+    public void onClickLinkedinBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://linkedin.com/in/tanjim-abubokor/");
     }
 
     @FXML
@@ -205,6 +206,11 @@ public class AdminController implements Initializable {
     @FXML
     public void onClickChatBtn(ActionEvent event) throws IOException {
         HelloApplication.changeScene("chat-view","SeuQuest- Add secret key", 1300, 744);
+    }
+
+    @FXML
+    private void onClickTrainingBtn(ActionEvent event) throws IOException {
+        HelloApplication.changeScene("trainer-view","SeuQuest- Training dashboard", 1300, 744);
     }
 
     public void loadUserLayout(boolean hasRole, String userFullName,

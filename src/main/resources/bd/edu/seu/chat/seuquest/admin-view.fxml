@@ -63,6 +63,11 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Button>
+                        <Button fx:id="trainingBtn" layoutX="82.0" layoutY="22.0" mnemonicParsing="false" onAction="#onClickTrainingBtn" prefHeight="34.0" prefWidth="35.0" styleClass="training-icon-btn">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Button>
                         <Button fx:id="addUserBtn" layoutX="127.0" layoutY="22.0" mnemonicParsing="false" onAction="#onClickCreateUserBtn" prefHeight="34.0" prefWidth="35.0" styleClass="adduser-icon-btn">
                            <HBox.margin>
                               <Insets right="10.0" />
@@ -76,7 +81,7 @@
                         <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#onClickLogoutBtn" prefHeight="36.0" prefWidth="36.0" styleClass="logout-icon-btn" />
                      </children>
                   </HBox>
-                        <VBox alignment="BOTTOM_CENTER" prefHeight="441.0" prefWidth="315.0">
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="441.0" prefWidth="315.0" VBox.vgrow="ALWAYS">
                             <VBox.margin>
                                 <Insets top="50.0" />
                             </VBox.margin>

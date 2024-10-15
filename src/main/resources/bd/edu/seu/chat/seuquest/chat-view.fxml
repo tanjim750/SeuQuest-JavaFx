@@ -15,7 +15,7 @@
 
 <AnchorPane id="anchorPane" prefHeight="744.0" prefWidth="1301.0" stylesheets="@values/style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.edu.seu.chat.seuquest.ChatController">
     <children>
-        <HBox fx:id="sidebarHbox" stylesheets="@values/style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <HBox fx:id="sidebarHbox" stylesheets="@values/style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <VBox layoutX="315.0" prefHeight="744.0" prefWidth="957.0" style="-fx-background-color: #ebeff2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="315.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="916.0">
@@ -77,8 +77,8 @@
                   <Insets right="13.0" />
                </VBox.margin>
                <children>
-                  <ChoiceBox fx:id="deptChoice" prefHeight="45.0" prefWidth="104.0" style="-fx-background-color: white; -fx-background-radius: 10;" />
-                  <TextField fx:id="queryField" prefHeight="45.0" prefWidth="705.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="input-text-field" />
+                  <ChoiceBox fx:id="deptChoice" prefHeight="45.0" prefWidth="153.0" style="-fx-background-color: white; -fx-background-radius: 10;" />
+                  <TextField fx:id="queryField" prefHeight="45.0" prefWidth="676.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="input-text-field" />
                   <Button fx:id="askBtn" mnemonicParsing="false" onAction="#onClickAskBtn" prefHeight="45.0" prefWidth="108.0" style="-fx-background-color: #71B6F9; -fx-font-size: 18; -fx-font-weight: bold;" styleClass="chat-button" text="Send" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />

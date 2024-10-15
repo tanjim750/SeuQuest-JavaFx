@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,18 +42,8 @@ public class GeneralSidebarController implements Initializable {
     private Text userRole;
 
     @FXML
-    void onClickGithubBtn(ActionEvent event) {
-
-    }
-
-    @FXML
     void onClickHomeBtn(ActionEvent event) throws IOException {
         HelloApplication.changeScene("hello-view","SeuQuest - Welcome", 640, 744);
-    }
-
-    @FXML
-    void onClickLinkedinBtn(ActionEvent event) {
-
     }
 
     @FXML
@@ -69,11 +60,6 @@ public class GeneralSidebarController implements Initializable {
     @FXML
     void onClickRegistrationBtn(ActionEvent event) throws IOException {
         HelloApplication.changeScene("registration-view","SeuQuest- Registration page", 800, 744);
-    }
-
-    @FXML
-    void onClickWebsiteBtn(ActionEvent event) {
-
     }
 
     private UserDetails userDetails = HelloApplication.getDetails();
@@ -93,5 +79,19 @@ public class GeneralSidebarController implements Initializable {
         }
     }
 
+    @FXML
+    public void onClickGithubBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://github.com/tanjim750");
+    }
+
+    @FXML
+    public void onClickWebsiteBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://tanjim-abubokor.github.io/");
+    }
+
+    @FXML
+    public void onClickLinkedinBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://linkedin.com/in/tanjim-abubokor/");
+    }
 
 }

@@ -1,12 +1,8 @@
 package bd.edu.seu.chat.seuquest;
 
-import bd.edu.seu.chat.seuquest.embedding.HuggingFaceEmbedding;
-import bd.edu.seu.chat.seuquest.gemini.Gemini;
 import bd.edu.seu.chat.seuquest.user.DatabaseManager;
 import bd.edu.seu.chat.seuquest.user.Role;
 import bd.edu.seu.chat.seuquest.user.UserDetails;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,11 +13,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.Map;
 import java.util.Optional;
 
 public class HelloApplication extends Application {
@@ -79,15 +77,7 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) throws Exception {
-        HuggingFaceEmbedding embedding = new HuggingFaceEmbedding();
-        String text = "I am Tanjim Abubokor";
-        String response = embedding.getEmbedding(text);
-        System.out.println("Embedding response: " + response);
-
-//        String embedText = embedding.getEmbedding("I am Tanjim Abubokor");
-//        System.out.println(embedText);
-//        launch();
-        return;
+        launch();
     }
 
     public static void changeScene(String fxml, String title, int width, int height) throws IOException {
@@ -180,6 +170,15 @@ public class HelloApplication extends Application {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public static void visitUrl(String url) throws IOException, URISyntaxException {
+        URI targetUrl = new URI(url);
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            Desktop.getDesktop().browse(targetUrl);
+        }else {
+            Runtime.getRuntime().exec(new String[]{"xdg-open", url});
         }
     }
 }

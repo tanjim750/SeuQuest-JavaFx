@@ -1,9 +1,11 @@
 package bd.edu.seu.chat.seuquest;
 
-import bd.edu.seu.chat.seuquest.gemini.Gemini;
+import bd.edu.seu.chat.seuquest.modules.gemini.Gemini;
+import bd.edu.seu.chat.seuquest.modules.qdrant.QDrant;
 import bd.edu.seu.chat.seuquest.user.DatabaseManager;
 import bd.edu.seu.chat.seuquest.user.Role;
 import bd.edu.seu.chat.seuquest.user.UserDetails;
+import com.google.gson.JsonObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -44,18 +46,25 @@ public class ChatController implements Initializable {
     @FXML
     private ScrollPane tableScroll;
 
+    private static String geminiSystemMsg = """
+            You are SeuQuest developed by Tanjim Abubokor for help students to provide information about Southeast University. Use the following pieces of context to answer the question.
+            --------------------------------------------------------------------------------------
+            context:
+            """;
+
     private Gemini gemini;
     private DatabaseManager db = HelloApplication.dbManager;
     private UserDetails userDetails = HelloApplication.getDetails();
 
     private ObservableList<String> choices = FXCollections.observableArrayList(
-        "CSE","BBA","PHARMACY","TEXTILE"
+        "CSE","EEE","BBA","PHARMACY","TEXTILE","ARCHITECTURE",
+            "ENGLISH","LAW","BANGLA","ECONOMICS","MDS","OTHER"
     );
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gemini = new Gemini("AIzaSyDBPSCKl709XE1mGjxySjgxEgX2MJHtRZY");
-        gemini.setSystemInstruction("You are SeuQuest, an AI chatbot developed by Tanjim Abubokor. You are here to provide information about Southeast University.");
+//        gemini.setSystemInstruction("You are SeuQuest, an AI chatbot developed by Tanjim Abubokor. You are here to provide information about Southeast University.");
 
         deptChoice.setItems(choices);
         deptChoice.setValue("CSE");
@@ -81,6 +90,13 @@ public class ChatController implements Initializable {
     @FXML
     private void onClickAskBtn(ActionEvent event) throws IOException {
         String query = queryField.getText().trim();
+        String dept = deptChoice.getValue().trim();
+
+        JsonObject metadata = new JsonObject();
+        JsonObject must = new JsonObject();
+        must.addProperty("must",dept);
+        metadata.add("metadata",must);
+
         if(!query.isEmpty()){
             askBtn.setDisable(true);
             MessageController controller = addMessage(query,"Texting....");
@@ -93,6 +109,15 @@ public class ChatController implements Initializable {
             Task<String> task = new Task<String>() {
                 @Override
                 protected String call() throws Exception {
+                    JsonObject response = QDrant.search(query,metadata);
+                    boolean ok = response.get("OK").getAsBoolean();
+                    if(ok){
+                        String context = response.get("context").getAsString();
+                        gemini.setSystemInstruction(geminiSystemMsg.concat(context));
+                    }else {
+                        gemini.setSystemInstruction(geminiSystemMsg.concat("\n No information found"));
+                    }
+
                     return gemini.query(query);  // Perform the long-running operation
                 }
 
@@ -113,7 +138,7 @@ public class ChatController implements Initializable {
                 @Override
                 protected void failed() {
                     // Handle error if the task fails
-                    controller.setSeuquestMsg("Error occurred while querying.");
+                    controller.setSeuquestMsg("Error occurred while texting.");
                     askBtn.setDisable(false);  // Enable the button
                 }
             };
@@ -174,38 +199,4 @@ public class ChatController implements Initializable {
 
         tableScroll.setVvalue(1.0);
     }
-
-
-    @FXML
-    void onClickAddKeyBtn(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onClickCreateUserBtn(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onClickGithubBtn(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onClickLinkedinBtn(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onClickLogoutBtn(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onClickWebsiteBtn(ActionEvent event) {
-
-    }
-
-
-
 }

@@ -102,30 +102,6 @@ public class RegistrationController implements Initializable {
         HelloApplication.changeScene("hello-view","SeuQuest", 640, 744);
     }
 
-    public void visitUrl(String url) throws IOException, URISyntaxException {
-        URI targetUrl = new URI(url);
-        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-            Desktop.getDesktop().browse(targetUrl);
-        }else {
-            Runtime.getRuntime().exec(new String[]{"xdg-open", url});
-        }
-    }
-
-    @FXML
-    public void onClickGithubBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
-        visitUrl("https://github.com/tanjim750");
-    }
-
-    @FXML
-    public void onClickWebsiteBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
-        visitUrl("https://tanjim-abubokor.github.io/");
-    }
-
-    @FXML
-    public void onClickLinkedinBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
-        visitUrl("https://linkedin.com/in/tanjim-abubokor/");
-    }
-
     private String getProfilePath(){
         if(userProfile1.isSelected()){
             return "boy.png";
@@ -142,5 +118,20 @@ public class RegistrationController implements Initializable {
         }else {
             return "guest-user.png";
         }
+    }
+
+    @FXML
+    public void onClickGithubBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://github.com/tanjim750");
+    }
+
+    @FXML
+    public void onClickWebsiteBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://tanjim-abubokor.github.io/");
+    }
+
+    @FXML
+    public void onClickLinkedinBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://linkedin.com/in/tanjim-abubokor/");
     }
 }

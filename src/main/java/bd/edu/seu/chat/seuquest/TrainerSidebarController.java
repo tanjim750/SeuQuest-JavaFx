@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -49,16 +50,6 @@ public class TrainerSidebarController implements Initializable {
     }
 
     @FXML
-    void onClickGithubBtn(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onClickLinkedinBtn(ActionEvent event) {
-
-    }
-
-    @FXML
     void onClickLogoutBtn(ActionEvent event) throws IOException {
         HelloApplication.logout();
         HelloApplication.changeScene("hello-view","SeuQuest- welcome", 640, 744);
@@ -70,8 +61,18 @@ public class TrainerSidebarController implements Initializable {
     }
 
     @FXML
-    void onClickWebsiteBtn(ActionEvent event) {
+    public void onClickGithubBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://github.com/tanjim750");
+    }
 
+    @FXML
+    public void onClickWebsiteBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://tanjim-abubokor.github.io/");
+    }
+
+    @FXML
+    public void onClickLinkedinBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://linkedin.com/in/tanjim-abubokor/");
     }
 
 }

@@ -33,27 +33,18 @@ public class HelloController implements Initializable {
         HelloApplication.changeScene("chat-view","SeuQuest- Training Dashboard", 1300, 744);
     }
 
-    public void visitUrl(String url) throws IOException, URISyntaxException {
-        URI targetUrl = new URI(url);
-        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-            Desktop.getDesktop().browse(targetUrl);
-        }else {
-            Runtime.getRuntime().exec(new String[]{"xdg-open", url});
-        }
-    }
-
     @FXML
     public void onClickGithubBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
-        visitUrl("https://github.com/tanjim750");
+        HelloApplication.visitUrl("https://github.com/tanjim750");
     }
 
     @FXML
     public void onClickWebsiteBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
-        visitUrl("https://tanjim-abubokor.github.io/");
+        HelloApplication.visitUrl("https://tanjim-abubokor.github.io/");
     }
 
     @FXML
     public void onClickLinkedinBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
-        visitUrl("https://linkedin.com/in/tanjim-abubokor/");
+        HelloApplication.visitUrl("https://linkedin.com/in/tanjim-abubokor/");
     }
 }

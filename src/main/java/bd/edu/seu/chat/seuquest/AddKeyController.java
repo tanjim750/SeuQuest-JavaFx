@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -177,18 +178,18 @@ public class AddKeyController implements Initializable {
     }
 
     @FXML
-    void onClickGithubBtn(ActionEvent event) {
-
+    void onClickGithubBtn(ActionEvent event) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://github.com/tanjim750");
     }
 
     @FXML
-    void onClickLinkedinBtn(ActionEvent event) {
-
+    void onClickLinkedinBtn(ActionEvent event) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://linkedin.com/in/tanjim-abubokor/");
     }
 
     @FXML
-    void onClickWebsiteBtn(ActionEvent event) {
-
+    void onClickWebsiteBtn(ActionEvent event) throws IOException, URISyntaxException {
+        HelloApplication.visitUrl("https://tanjim-abubokor.github.io/");
     }
 
     @FXML
