@@ -1,5 +1,5 @@
 package bd.edu.seu.chat.seuquest.user;
 
 public enum Role {
-    ADMIN,TRAINER,GENERAL,GUEST,NONE;
+    SUPERUSER,ADMIN,TRAINER,STUDENT,GENERAL,GUEST,NONE;
 }

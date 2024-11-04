@@ -69,11 +69,13 @@ public class ChatController implements Initializable {
         deptChoice.setItems(choices);
         deptChoice.setValue("CSE");
 
-        if (userDetails.getRole() == Role.ADMIN) {
+        if (userDetails.getRole() == Role.ADMIN || userDetails.getRole() == Role.SUPERUSER) {
             HelloApplication.loadNewLayout(sidebarHbox,"adminSidebar-view.fxml");
         }else if(userDetails.getRole() == Role.TRAINER){
             HelloApplication.loadNewLayout(sidebarHbox,"trainerSidebar-view.fxml");
-        }else {
+        } else if (userDetails.getRole() == Role.STUDENT) {
+            HelloApplication.loadNewLayout(sidebarHbox,"studentSidebar-view.fxml");
+        } else {
             HelloApplication.loadNewLayout(sidebarHbox,"generalSidebar-view.fxml");
         }
 

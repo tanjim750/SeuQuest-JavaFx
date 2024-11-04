@@ -14,13 +14,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="anchorPane" prefHeight="744.0" prefWidth="800.0" styleClass="vbox-background" stylesheets="@values/style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.edu.seu.chat.seuquest.LoginController">
+<AnchorPane id="anchorPane" prefHeight="744.0" prefWidth="940.0" style="-fx-background-color: #ebeff2;" stylesheets="@values/style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.edu.seu.chat.seuquest.LoginController">
    <children>
       <HBox layoutX="172.0" layoutY="142.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="744.0" stylesheets="@values/style/style.css" HBox.hgrow="ALWAYS">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="744.0" prefWidth="333.0" style="-fx-background-color: rgba(169, 169, 169, 0.5);" HBox.hgrow="ALWAYS">
+                  <VBox alignment="TOP_CENTER" prefHeight="744.0" prefWidth="77.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                      <children>
                         <ImageView fitHeight="209.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 1;">
                            <image>
@@ -83,9 +83,13 @@
                         <Insets top="20.0" />
                      </padding>
                   </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="744.0" prefWidth="595.0">
+               <children>
                   <VBox alignment="TOP_CENTER" prefHeight="744.0" prefWidth="499.0">
                      <children>
-                        <VBox id="loginVBox" alignment="CENTER" prefHeight="770.0" prefWidth="483.0" VBox.vgrow="ALWAYS">
+                        <VBox id="loginVBox" alignment="CENTER" prefHeight="744.0" prefWidth="607.0" VBox.vgrow="ALWAYS">
                            <children>
                               <Label text="Welcome">
                                  <font>
@@ -95,41 +99,76 @@
                                     <Insets bottom="30.0" top="20.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="usernameField" prefHeight="37.0" prefWidth="393.0" promptText="Username" styleClass="input-text-field">
-                                 <VBox.margin>
-                                    <Insets bottom="15.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </TextField>
-                              <PasswordField fx:id="passwordField" promptText="Password" styleClass="input-text-field">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </PasswordField>
-                              <Label fx:id="warningLable" style="-fx-background-color: gray;" textFill="#a81111">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
+                              <VBox alignment="CENTER" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                 <children>
+                                    <TextField fx:id="usernameField" prefHeight="37.0" prefWidth="393.0" promptText="Username" styleClass="input-text-field">
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </TextField>
+                                    <PasswordField fx:id="passwordField" promptText="Password" styleClass="input-text-field">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </PasswordField>
+                                    <Label fx:id="warningLable" prefHeight="31.0" textFill="#c32727">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#onClickLoginBtn" prefHeight="41.0" prefWidth="410.0" styleClass="chat-button" text="Login">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="System Bold Italic" size="20.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="50.0" right="20.0" />
+                                       </padding>
+                                    </Button>
+                                    <Label text="OR">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER" prefHeight="41.0" prefWidth="389.0" style="-fx-background-color: black; -fx-background-radius: 7;" VBox.vgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                       <children>
+                                          <ImageView fitHeight="37.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@values/images/google-logo.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Button fx:id="loginWithGoogleBtn" onAction="#onClickLoginWithGoogleBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="264.0" style="-fx-background-color: transparent;" text="Login With Google" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
                                  <padding>
-                                    <Insets bottom="5.0" top="5.0" />
+                                    <Insets bottom="40.0" left="20.0" right="20.0" top="40.0" />
                                  </padding>
-                              </Label>
-                              <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#onClickLoginBtn" prefHeight="41.0" prefWidth="410.0" styleClass="chat-button" text="Login">
-                                 <VBox.margin>
-                                    <Insets top="30.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="System Bold Italic" size="20.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="50.0" right="20.0" />
-                                 </padding>
-                              </Button>
+                              </VBox>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?">
                                  <font>
                                     <Font size="15.0" />
@@ -142,7 +181,7 @@
                               <Hyperlink id="homeBtn" fx:id="homeBtn" layoutX="210.0" layoutY="514.0" onAction="#OnClickHomeBtn" text="Home" />
                            </children>
                            <padding>
-                              <Insets left="40.0" right="50.0" />
+                              <Insets left="40.0" right="30.0" />
                            </padding>
                         </VBox>
                      </children>

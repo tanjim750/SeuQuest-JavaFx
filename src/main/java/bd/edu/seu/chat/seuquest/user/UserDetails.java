@@ -22,16 +22,23 @@ public class UserDetails{
     private String secretKey;
     private String profilePath;
 
-    private DatabaseManager db;
+    private DatabaseManager db = HelloApplication.dbManager;
 
     public UserDetails() {}
+
+    public UserDetails(boolean isAuthenticated, Integer id, String username, String fullName, boolean hasRole, Role role) {
+        this.isAuthenticated = isAuthenticated;
+        this.id = id;
+        this.username = username;
+        this.fullName = fullName;
+        this.hasRole = hasRole;
+        this.role = role;
+    }
 
     public UserDetails(String username, String password) throws SQLException {
         this.username = username;
         this.password = encyptPassword(password);
 
-        db = new DatabaseManager("jdbc:mysql://localhost:3306/seuquestdb",
-                "seuquest", "seuquest");
     }
 
     public UserDetails(String username, String password, String secretKey, String fullName,String profile) throws SQLException {
@@ -41,8 +48,6 @@ public class UserDetails{
         this.fullName = fullName;
         this.profilePath = profile;
 
-        db = new DatabaseManager("jdbc:mysql://localhost:3306/seuquestdb",
-                "seuquest", "seuquest");
     }
 
     public UserDetails(String username, String password, Role role, String fullName,String profile) throws SQLException {
@@ -52,8 +57,6 @@ public class UserDetails{
         this.fullName = fullName;
         this.profilePath = profile;
 
-        db = new DatabaseManager("jdbc:mysql://localhost:3306/seuquestdb",
-                "seuquest", "seuquest");
     }
 
 
@@ -109,6 +112,36 @@ public class UserDetails{
         }
 
         return false;
+    }
+
+    public boolean loginStudent(String email, String name, String profile) throws SQLException {
+        StringBuilder query = new StringBuilder();
+        StringBuilder createUserCommand = new StringBuilder();
+
+        query.append(
+                "SELECT * FROM users WHERE username = '"
+                        + email + "'"
+        );
+        createUserCommand.append(
+                "INSERT INTO users (username, full_name, role, has_role, profile) "
+                + "VALUES('"
+                + email +"','"
+                + name +"','"
+                + Role.STUDENT.name() +"',"
+                + true +",'"
+                + profile +"')"
+        );
+        ResultSet result = db.customQuery(query.toString());
+        
+        int id = 765;
+        if (result.next()) {
+            id = result.getInt("id");
+        }else {
+            db.customCommand(createUserCommand.toString());
+        }
+        
+        setDetails(true,email,id,name,true,Role.STUDENT,profile);
+        return true;
     }
 
     public boolean register() throws SQLException {
@@ -178,6 +211,15 @@ public class UserDetails{
         return fullName;
     }
 
+    public String getProfilePath() {
+        return profilePath;
+    }
+
+    public Role setRole(Role role) {
+        this.role = role;
+        return role;
+    }
+
     public Map<String, Object> getDetails(){
         Map<String, Object> details = new HashMap<>();
         details.put("isAuthenticated", isAuthenticated);
@@ -191,7 +233,9 @@ public class UserDetails{
 
     public Role getRoleFromString(String StrRole){
         Role userRole;
-        if(StrRole.equals("ADMIN")){
+        if(StrRole.equals("SUPERUSER")){
+            userRole = Role.SUPERUSER;
+        }else if(StrRole.equals("ADMIN")){
             userRole = Role.ADMIN;
         }else if(StrRole.equals("TRAINER")){
             userRole = Role.TRAINER;
@@ -199,8 +243,9 @@ public class UserDetails{
             userRole = Role.GUEST;
         }else if(StrRole.equals("GENERAL")){
             userRole = Role.GENERAL;
-        }
-        else {
+        } else if (StrRole.equals("STUDENT")) {
+            userRole = Role.STUDENT;
+        } else {
             userRole = Role.NONE;
         }
         return userRole;
@@ -218,4 +263,6 @@ public class UserDetails{
         profileImage = new Image(String.valueOf(HelloApplication.class.getResource(path)));
         return profileImage;
     }
+
+
 }

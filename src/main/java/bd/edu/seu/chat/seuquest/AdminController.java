@@ -1,6 +1,5 @@
 package bd.edu.seu.chat.seuquest;
 
-import bd.edu.seu.chat.seuquest.user.DatabaseManager;
 import bd.edu.seu.chat.seuquest.user.Role;
 import bd.edu.seu.chat.seuquest.user.UserDetails;
 import javafx.event.ActionEvent;
@@ -10,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -19,7 +19,10 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AdminController implements Initializable {
     @FXML
@@ -88,10 +91,15 @@ public class AdminController implements Initializable {
     @FXML
     private Label username;
 
+    @FXML
+    private TextField searchField;
+
     private UserDetails userDetails = HelloApplication.getDetails();
+    public static List<UserDetails> allUsers = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        allUsers.clear(); // remove all users
 
         profle.setImage(userDetails.getProfileImage());
         profile2.setImage(userDetails.getProfileImage());
@@ -101,9 +109,23 @@ public class AdminController implements Initializable {
 
 
         setTotalUsers();
-        displayAllUsers();
+        getAllUsers();
         setTotalQueries();
         setAnonymousQueries();
+
+        searchField.setOnKeyPressed(event -> {
+            if(event.getCode() == KeyCode.ENTER){
+                String searchText = searchField.getText().trim();
+                if(!searchText.isEmpty()){
+                    searchUser(searchText);
+                }
+            }else {
+                String searchText = searchField.getText().trim();
+                if(searchText.isEmpty()){
+                    displayUsersList(allUsers);
+                }
+            }
+        });
     }
 
     private void setTotalUsers() {
@@ -152,24 +174,44 @@ public class AdminController implements Initializable {
 
     }
 
-    private void displayAllUsers() {
+    private void getAllUsers() {
         try{
             ResultSet users = HelloApplication.dbManager.getAll("users");
-            while (users.next()) {
+            while (users.next()){
                 boolean hasRole = users.getBoolean("has_role");
                 String userFullName = users.getString("full_name");
                 int userId = users.getInt("id");
                 Role userRole = userDetails.getRoleFromString(users.getString("role"));
                 String username = users.getString("username");
-                if(!username.equals(userDetails.getUsername())) {
-                    loadUserLayout(hasRole,userFullName,userId,userRole,username);
-                }
 
+                UserDetails user = new UserDetails(false,userId,username,userFullName,hasRole,userRole);
+                allUsers.add(user);
             }
+            displayUsersList(allUsers);
         }catch (SQLException e){
             HelloApplication.infoAlart("Error","Error On execution",e.getMessage());
         }
+    }
 
+    private void displayUsersList(List<UserDetails> users) {
+        tableDataVbox.getChildren().clear();
+        for (UserDetails user : users) {
+            if(!username.equals(userDetails.getUsername())) {
+                if(!user.getUsername().equals(userDetails.getUsername())) {
+                    loadUserLayout(user.hasRole(),user.getFullName(), user.getId(), user.getRole(),user.getUsername());
+                }
+            }
+        }
+    }
+
+    private void searchUser(String text){
+        List<UserDetails> users = allUsers.stream().filter( user ->
+                user.getFullName().toLowerCase().contains(text) ||
+                user.getUsername().toLowerCase().contains(text)
+
+        ).collect(Collectors.toList());
+
+        displayUsersList(users);
     }
 
     @FXML

@@ -1,7 +1,10 @@
 package bd.edu.seu.chat.seuquest;
 
+import bd.edu.seu.chat.seuquest.modules.GoogleLogin;
+import bd.edu.seu.chat.seuquest.user.DatabaseManager;
 import bd.edu.seu.chat.seuquest.user.Role;
 import bd.edu.seu.chat.seuquest.user.UserDetails;
+import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,6 +18,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -49,9 +53,33 @@ public class LoginController implements Initializable {
 
     private UserDetails userDetails;
 
+    private GoogleLogin googleLogin = new GoogleLogin();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    private void manageGoogleLogin(JsonObject credentials) throws SQLException, IOException {
+        String status = credentials.get("status").getAsString();
+
+        if(!status.equals("200")){
+            HelloApplication.infoAlart("Unauthenticated","User not found","Make sure you are successfully logged in");
+            return;
+        }
+
+        String email = credentials.get("email").getAsString();
+        String name = credentials.get("name").getAsString();
+        String hd = credentials.get("hd").getAsString();
+        String picture = credentials.get("picture").getAsString();
+
+        if(hd.equals("seu.edu.bd")){
+            userDetails = HelloApplication.getDetails();
+            userDetails.loginStudent(email,name,picture);
+            HelloApplication.changeScene("student-view","SeuQuest- Training Dashboard", 1300, 744);
+        }else {
+            HelloApplication.infoAlart("Unauthenticated","Not allow","Make sure your using the mail that is given by Southeast.");
+        }
     }
 
     @FXML
@@ -70,7 +98,7 @@ public class LoginController implements Initializable {
 
 
                     if(userDetails.isAuthenticated() && userDetails.hasRole()){
-                        if(userDetails.getRole() == Role.ADMIN){
+                        if(userDetails.getRole() == Role.ADMIN || userDetails.getRole() == Role.SUPERUSER){
                             HelloApplication.changeScene("admin-view","SeuQuest- Admin Dashboard", 1300, 744);
                         }else if(userDetails.getRole() == Role.TRAINER){
                             HelloApplication.changeScene("trainer-view","SeuQuest- Training Dashboard", 1300, 744);
@@ -111,6 +139,17 @@ public class LoginController implements Initializable {
     @FXML
     public void onClickLinkedinBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
         HelloApplication.visitUrl("https://linkedin.com/in/tanjim-abubokor/");
+    }
+
+    @FXML
+    public void onClickLoginWithGoogleBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException, SQLException {
+        HelloApplication.visitUrl("http://127.0.0.1:5000/login");
+        boolean confirm = HelloApplication.confirmationAlart("Login","Login Confirmation","Did you logged in with google?");
+        if(confirm){
+            JsonObject credentials = googleLogin.login();
+            System.out.println(credentials);
+            manageGoogleLogin(credentials);
+        }
     }
 
 }

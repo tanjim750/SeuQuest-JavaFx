@@ -65,7 +65,7 @@ public class TrainerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(userDetails.getRole() == Role.ADMIN){
+        if(userDetails.getRole() == Role.ADMIN || userDetails.getRole() == Role.SUPERUSER){
             HelloApplication.loadNewLayout(sidebarHbox,"adminSidebar-view.fxml");
         }else {
             HelloApplication.loadNewLayout(sidebarHbox,"trainerSidebar-view.fxml");

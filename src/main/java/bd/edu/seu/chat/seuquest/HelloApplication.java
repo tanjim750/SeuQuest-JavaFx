@@ -11,7 +11,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 
 import java.awt.*;
 import java.io.IOException;
@@ -61,7 +65,7 @@ public class HelloApplication extends Application {
 
     public static UserDetails getDetails(){
         if(userDetails==null){
-            return new UserDetails();
+            userDetails = new UserDetails();
         }
         return userDetails;
     }
@@ -180,6 +184,21 @@ public class HelloApplication extends Application {
         }else {
             Runtime.getRuntime().exec(new String[]{"xdg-open", url});
         }
+    }
+
+    public static void webView(String url) throws IOException {
+        Stage webViewStage = new Stage();
+        webViewStage.initModality(Modality.APPLICATION_MODAL); // Block main window
+        webViewStage.setTitle("Google Login");
+
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+        webEngine.load(url);
+
+        VBox layout = new VBox(webView);
+        Scene scene = new Scene(layout, 1200, 1000);
+        webViewStage.setScene(scene);
+        webViewStage.show();
     }
 }
 
