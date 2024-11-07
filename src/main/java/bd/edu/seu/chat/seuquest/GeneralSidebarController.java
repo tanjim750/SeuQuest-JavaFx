@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class GeneralSidebarController implements Initializable {
@@ -28,6 +29,9 @@ public class GeneralSidebarController implements Initializable {
 
     @FXML
     private Button logoutBtn;
+
+    @FXML
+    private Button changePassBtn;
 
     @FXML
     private Label name;
@@ -52,7 +56,7 @@ public class GeneralSidebarController implements Initializable {
     }
 
     @FXML
-    void onClickLogoutBtn(ActionEvent event) throws IOException {
+    void onClickLogoutBtn(ActionEvent event) throws IOException, SQLException {
         HelloApplication.logout();
         HelloApplication.changeScene("hello-view","SeuQuest - Welcome", 640, 744);
     }
@@ -76,12 +80,18 @@ public class GeneralSidebarController implements Initializable {
             userRole.setText(userDetails.getRole().name());
         }else {
             buttons.getChildren().remove(logoutBtn);
+            buttons.getChildren().remove(changePassBtn);
         }
     }
 
     @FXML
     public void onClickGithubBtn(javafx.event.ActionEvent actionEvent) throws IOException, URISyntaxException {
         HelloApplication.visitUrl("https://github.com/tanjim750");
+    }
+
+    @FXML
+    private void onClickChangePassBtn(javafx.event.ActionEvent event) throws IOException {
+        HelloApplication.changeScene("changePass-view","Change Password", 1170, 744);
     }
 
     @FXML

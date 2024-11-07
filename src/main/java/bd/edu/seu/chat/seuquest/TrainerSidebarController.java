@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class TrainerSidebarController implements Initializable {
@@ -43,6 +44,10 @@ public class TrainerSidebarController implements Initializable {
         userRole.setText(userDetails.getRole().name());
     }
 
+    @FXML
+    private void onClickChangePassBtn(javafx.event.ActionEvent event) throws IOException {
+        HelloApplication.changeScene("changePass-view","Change Password", 1170, 744);
+    }
 
     @FXML
     void onClickChatBtn(ActionEvent event) throws IOException {
@@ -50,7 +55,7 @@ public class TrainerSidebarController implements Initializable {
     }
 
     @FXML
-    void onClickLogoutBtn(ActionEvent event) throws IOException {
+    void onClickLogoutBtn(ActionEvent event) throws IOException, SQLException {
         HelloApplication.logout();
         HelloApplication.changeScene("hello-view","SeuQuest- welcome", 640, 744);
     }

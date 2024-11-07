@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="anchorPane" prefHeight="744.0" prefWidth="1301.0" stylesheets="@values/style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.edu.seu.chat.seuquest.AdminController">
+<AnchorPane id="anchorPane" prefHeight="744.0" prefWidth="1334.0" stylesheets="@values/style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.edu.seu.chat.seuquest.AdminController">
     <children>
-        <HBox stylesheets="@values/style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox prefHeight="744.0" prefWidth="356.0" stylesheets="@values/style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <VBox alignment="TOP_CENTER" prefHeight="744.0" prefWidth="315.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                     <children>
@@ -57,29 +57,30 @@
                                 <Insets />
                             </VBox.margin>
                         </Text>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="324.0" spacing="5.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Button fx:id="chatBtn" mnemonicParsing="false" onAction="#onClickChatBtn" prefHeight="34.0" prefWidth="35.0" styleClass="chat-icon-btn">
                            <HBox.margin>
-                              <Insets right="10.0" />
+                              <Insets />
                            </HBox.margin>
                         </Button>
                         <Button fx:id="trainingBtn" layoutX="82.0" layoutY="22.0" mnemonicParsing="false" onAction="#onClickTrainingBtn" prefHeight="34.0" prefWidth="35.0" styleClass="training-icon-btn">
                            <HBox.margin>
-                              <Insets right="10.0" />
+                              <Insets />
                            </HBox.margin>
                         </Button>
                         <Button fx:id="addUserBtn" layoutX="127.0" layoutY="22.0" mnemonicParsing="false" onAction="#onClickCreateUserBtn" prefHeight="34.0" prefWidth="35.0" styleClass="adduser-icon-btn">
                            <HBox.margin>
-                              <Insets right="10.0" />
+                              <Insets />
                            </HBox.margin>
                         </Button>
                         <Button fx:id="addKeyBtn" layoutX="191.0" layoutY="22.0" mnemonicParsing="false" onAction="#onClickAddKeyBtn" prefHeight="34.0" prefWidth="35.0" styleClass="addkey-icon-btn">
                            <HBox.margin>
-                              <Insets right="10.0" />
+                              <Insets />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#onClickLogoutBtn" prefHeight="36.0" prefWidth="36.0" styleClass="logout-icon-btn" />
+                        <Button fx:id="changePassBtn" layoutX="269.0" layoutY="21.0" mnemonicParsing="false" onAction="#onClickChangePassBtn" prefHeight="34.0" prefWidth="35.0" styleClass="changePass-icon-btn" />
+                        <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#onClickLogoutBtn" prefHeight="34.0" prefWidth="35.0" styleClass="logout-icon-btn" />
                      </children>
                   </HBox>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="441.0" prefWidth="315.0" VBox.vgrow="ALWAYS">
@@ -130,7 +131,7 @@
                 </VBox>
             </children>
         </HBox>
-      <VBox layoutX="315.0" prefHeight="744.0" prefWidth="957.0" style="-fx-background-color: #ebeff2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="315.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="353.0" prefHeight="744.0" prefWidth="981.0" style="-fx-background-color: #ebeff2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="353.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="772.0" VBox.vgrow="ALWAYS">
                <children>

@@ -62,6 +62,11 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
+            <Button fx:id="changePassBtn" layoutX="150.0" layoutY="22.0" mnemonicParsing="false" onAction="#onClickChangePassBtn" prefHeight="34.0" prefWidth="35.0" styleClass="changePass-icon-btn">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
             <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#onClickLogoutBtn" prefHeight="36.0" prefWidth="36.0" styleClass="logout-icon-btn" />
          </children>
       </HBox>

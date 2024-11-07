@@ -57,7 +57,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        userDetails = HelloApplication.getDetails();
     }
 
     private void manageGoogleLogin(JsonObject credentials) throws SQLException, IOException {
@@ -74,8 +74,7 @@ public class LoginController implements Initializable {
         String picture = credentials.get("picture").getAsString();
 
         if(hd.equals("seu.edu.bd")){
-            userDetails = HelloApplication.getDetails();
-            userDetails.loginStudent(email,name,picture);
+            HelloApplication.loginStudent(email,name,picture);
             HelloApplication.changeScene("student-view","SeuQuest- Training Dashboard", 1300, 744);
         }else {
             HelloApplication.infoAlart("Unauthenticated","Not allow","Make sure your using the mail that is given by Southeast.");
@@ -119,6 +118,11 @@ public class LoginController implements Initializable {
     @FXML
     public void OnClickRegistrationBtn(javafx.event.ActionEvent actionEvent) throws IOException {
         HelloApplication.changeScene("registration-view","SeuQuest- Registration page", 800, 744);
+    }
+
+    @FXML
+    public void OnClickForgotPassBtn(javafx.event.ActionEvent actionEvent) throws IOException {
+        HelloApplication.changeScene("forgotPass-view","Request - Forget Password", 640, 744);
     }
 
     @FXML

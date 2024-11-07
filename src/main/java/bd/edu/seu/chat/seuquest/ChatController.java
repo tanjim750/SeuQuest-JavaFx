@@ -54,7 +54,7 @@ public class ChatController implements Initializable {
 
     private Gemini gemini;
     private DatabaseManager db = HelloApplication.dbManager;
-    private UserDetails userDetails = HelloApplication.getDetails();
+    private UserDetails userDetails;
 
     private ObservableList<String> choices = FXCollections.observableArrayList(
         "CSE","EEE","BBA","PHARMACY","TEXTILE","ARCHITECTURE",
@@ -63,6 +63,8 @@ public class ChatController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        userDetails = HelloApplication.getDetails();
+
         gemini = new Gemini("AIzaSyDBPSCKl709XE1mGjxySjgxEgX2MJHtRZY");
 //        gemini.setSystemInstruction("You are SeuQuest, an AI chatbot developed by Tanjim Abubokor. You are here to provide information about Southeast University.");
 

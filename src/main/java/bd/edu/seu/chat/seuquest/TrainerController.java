@@ -226,7 +226,7 @@ public class TrainerController implements Initializable {
     }
 
     @FXML
-    void onClickLogoutBtn(ActionEvent event) throws IOException {
+    void onClickLogoutBtn(ActionEvent event) throws IOException, SQLException {
         HelloApplication.logout();
         HelloApplication.changeScene("hello-view","SeuQuest- welcome", 640, 744);
     }

@@ -154,7 +154,7 @@
                                                 <Image url="@values/images/google-logo.png" />
                                              </image>
                                           </ImageView>
-                                          <Button fx:id="loginWithGoogleBtn" onAction="#onClickLoginWithGoogleBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="264.0" style="-fx-background-color: transparent;" text="Login With Google" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                          <Button fx:id="loginWithGoogleBtn" mnemonicParsing="false" onAction="#onClickLoginWithGoogleBtn" prefHeight="36.0" prefWidth="264.0" style="-fx-background-color: transparent;" text="Login With Google" textFill="WHITE" HBox.hgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
@@ -178,6 +178,7 @@
                                  </VBox.margin>
                               </Text>
                               <Hyperlink fx:id="registrationBtn" onAction="#OnClickRegistrationBtn" text="Click here" />
+                              <Hyperlink fx:id="forgotPassBtn" layoutX="228.0" layoutY="586.0" onAction="#OnClickForgotPassBtn" text="Forgot Password?" />
                               <Hyperlink id="homeBtn" fx:id="homeBtn" layoutX="210.0" layoutY="514.0" onAction="#OnClickHomeBtn" text="Home" />
                            </children>
                            <padding>

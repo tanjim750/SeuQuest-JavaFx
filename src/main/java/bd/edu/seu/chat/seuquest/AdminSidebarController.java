@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AdminSidebarController implements Initializable {
@@ -61,7 +62,7 @@ public class AdminSidebarController implements Initializable {
     }
 
     @FXML
-    public void onClickLogoutBtn(ActionEvent event) throws IOException {
+    public void onClickLogoutBtn(ActionEvent event) throws IOException, SQLException {
         HelloApplication.logout();
         HelloApplication.changeScene("hello-view","SeuQuest- welcome", 640, 744);
     }

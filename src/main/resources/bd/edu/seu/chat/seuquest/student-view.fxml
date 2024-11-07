@@ -60,7 +60,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="936.0" spacing="10.0">
                      <children>
-                        <Button onAction="#onClickChooseFile" mnemonicParsing="false" text="Choose File" />
+                        <Button mnemonicParsing="false" onAction="#onClickChooseFile" text="Choose File" />
                         <Text fx:id="chooseFileText" strokeType="OUTSIDE" strokeWidth="0.0" text="No file selected(only pdf and text file)" />
                      </children>
                   </HBox>
@@ -87,8 +87,8 @@
                   <Insets right="13.0" />
                </VBox.margin>
                <children>
-                  <TextField fx:id="dataField" prefHeight="45.0" prefWidth="725.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="input-text-field" />
-                  <Button fx:id="trainingBtn" mnemonicParsing="false" onAction="#training" prefHeight="45.0" prefWidth="189.0" style="-fx-background-color: #71B6F9; -fx-font-size: 18; -fx-font-weight: bold;" styleClass="chat-button" text="Ask Question" textFill="WHITE">
+                  <TextField fx:id="queryField" prefHeight="45.0" prefWidth="725.0" promptText="Enter Your Question" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="input-text-field" />
+                  <Button fx:id="askBtn" mnemonicParsing="false" onAction="#onClickAskBtn" prefHeight="45.0" prefWidth="189.0" style="-fx-background-color: #71B6F9; -fx-font-size: 18; -fx-font-weight: bold;" styleClass="chat-button" text="Ask Question" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

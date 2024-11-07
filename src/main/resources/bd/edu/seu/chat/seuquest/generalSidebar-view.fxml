@@ -57,6 +57,11 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
+            <Button fx:id="changePassBtn" layoutX="83.0" layoutY="22.0" mnemonicParsing="false" onAction="#onClickChangePassBtn" prefHeight="34.0" prefWidth="35.0" styleClass="changePass-icon-btn">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
             <Button fx:id="loginBtn" layoutX="127.0" layoutY="22.0" mnemonicParsing="false" onAction="#onClickLoginBtn" prefHeight="34.0" prefWidth="35.0" styleClass="login-icon-btn">
                <HBox.margin>
                   <Insets right="10.0" />

@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class StudentSidebarController implements Initializable {
@@ -43,25 +44,25 @@ public class StudentSidebarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         name.setText(userDetails.getFullName());
-        userRole.setText(userDetails.getRole().name());
+        String studentId = userDetails.getUsername().split("@")[0];
+        userRole.setText(studentId);
         Image img = new Image(userDetails.getProfilePath());
         profle.setImage(img);
     }
 
     @FXML
     void onClickChatBtn(ActionEvent event) throws IOException {
-        HelloApplication.logout();
-        HelloApplication.changeScene("chat-view","SeuQuest - Welcome", 1300, 1000);
+        HelloApplication.changeScene("chat-view","SeuQuest - Welcome", 1300, 744);
     }
 
     @FXML
     void onClickHomeBtn(ActionEvent event) throws IOException {
-        HelloApplication.changeScene("student-view","SeuQuest - Welcome", 1300, 1000);
+        HelloApplication.changeScene("student-view","SeuQuest - Welcome", 1300, 744);
     }
 
 
     @FXML
-    void onClickLogoutBtn(ActionEvent event) throws IOException {
+    void onClickLogoutBtn(ActionEvent event) throws IOException, SQLException {
         HelloApplication.logout();
         HelloApplication.changeScene("hello-view","SeuQuest - Welcome", 640, 744);
     }

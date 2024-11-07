@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.event.ActionEvent;
 
 import java.net.URL;
+import java.security.SecureRandom;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -22,6 +23,12 @@ import java.util.ResourceBundle;
 public class UserInfoController implements Initializable {
     @FXML
     private Label hasRole;
+
+    @FXML
+    private Button generatePassBtn;
+
+    @FXML
+    private HBox action;
 
     @FXML
     private HBox tableRow;
@@ -53,20 +60,24 @@ public class UserInfoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userRole.setItems(roles);
-
+        generatePassBtn.setDisable(true);
 
     }
 
-    public void setData(boolean hasRole, String userFullName, int userId, Role userRole, String username) {
-        userDetails = new UserDetails(false,userId,username,userFullName,hasRole,userRole);
+    public void setData(UserDetails user) {
+        userDetails = user;
 
-        if(hasRole) this.hasRole.setText("Yes");
+        if(user.hasRole()) this.hasRole.setText("Yes");
         else this.hasRole.setText("No");
 
-        this.userFullName.setText(userFullName);
-        this.userId.setText(String.valueOf(userId));
-        this.userRole.setValue(userRole.name());
-        this.username.setText(username);
+        this.userFullName.setText(user.getFullName());
+        this.userId.setText(String.valueOf(user.getId()));
+        this.userRole.setValue(user.getRole().name());
+        this.username.setText(user.getUsername().replace("@seu.edu.bd",""));
+
+        if(user.isUserForgotPass()){
+            generatePassBtn.setDisable(false);
+        }
 
         // Create the listener
         listener = new ChangeListener<String>() {
@@ -129,11 +140,12 @@ public class UserInfoController implements Initializable {
         boolean isAdmin = HelloApplication.userDetails.getRole() == Role.ADMIN;
         boolean isSuperuser = HelloApplication.userDetails.getRole() == Role.SUPERUSER;
         boolean isDeleteUserSuperuser = userDetails.getRole() == Role.SUPERUSER;
+        boolean isStudent = userDetails.getRole() == Role.STUDENT;
 
-        System.out.println("has permission "+(isDeleteUserSuperuser || !(isSuperuser || isAdmin)));
+//        System.out.println("has permission "+(isDeleteUserSuperuser || !(isSuperuser || isAdmin)));
         userRole.getSelectionModel().selectedItemProperty().removeListener(listener); // removing the listener
 
-        if(isDeleteUserSuperuser || !(isSuperuser || isAdmin)){
+        if(isDeleteUserSuperuser || isStudent || !(isSuperuser || isAdmin)){
             HelloApplication.infoAlart("No permission",
                     "Not allowed to change role","You do not have permission to change role");
             userRole.setValue(prevRole);
@@ -166,5 +178,45 @@ public class UserInfoController implements Initializable {
         }
 
         userRole.getSelectionModel().selectedItemProperty().addListener(listener); // adding the listener
+    }
+
+    @FXML
+    private void onClickGeneratePassBtn() throws SQLException {
+        String password = generatePassword(8);
+        String encodePass = userDetails.encyptPassword(password);
+        StringBuilder command = new StringBuilder();
+        command.append(
+                "UPDATE users SET forgot_pass = false, password = '"
+                + encodePass
+                + "' WHERE ID = "
+                + this.userDetails.getId()
+        );
+
+        boolean confirm = HelloApplication.confirmationAlart("Confirmation","Set new password","Are you sure you want to set new password?");
+        if(confirm) {
+            db.customCommand(command.toString());
+            StringBuilder info = new StringBuilder();
+            info.append(
+                    "Password has been changed for the user '"
+                    +this.userDetails.getUsername() + "'"
+                    +"\nNew password is: '"
+                    + password +"'"
+            );
+            HelloApplication.infoAlart("Important","Password was set",info.toString());
+        }
+    }
+
+    private String generatePassword(int length){
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+<>?";
+        String password = "";
+        SecureRandom random = new SecureRandom();
+
+        for(int i = 0; i < length; i++){
+            int index = random.nextInt(characters.length());
+            password += characters.charAt(index);
+        }
+
+
+        return  password;
     }
 }

@@ -15,6 +15,7 @@ public class QDrant {
     private static final String API_URL = "http://127.0.0.1:5000/";
     private static final String search_URL = API_URL.concat("search");
     private static final String train_URL = API_URL.concat("train");
+    private static final String TEXT_SIMILARITY = API_URL.concat("text-similarity");
 
     public static String request(String url, JsonObject payload) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -47,6 +48,16 @@ public class QDrant {
         payload.add("metadata", metadata);
 
         String responseString = request(train_URL, payload);
+        return JsonParser.parseString(responseString).getAsJsonObject();
+    }
+
+    public static JsonObject textSimilarity(String question, String filePath, String fileType) throws IOException {
+        JsonObject payload = new JsonObject();
+        payload.addProperty("question", question);
+        payload.addProperty("file_path", filePath);
+        payload.addProperty("file_type", fileType);
+
+        String responseString = request(TEXT_SIMILARITY, payload);
         return JsonParser.parseString(responseString).getAsJsonObject();
     }
 

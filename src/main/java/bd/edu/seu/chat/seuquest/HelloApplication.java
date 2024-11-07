@@ -28,7 +28,7 @@ import java.util.Optional;
 
 public class HelloApplication extends Application {
     private static Stage stage;
-    public static UserDetails userDetails;
+    public static UserDetails userDetails = new UserDetails();
     public static DatabaseManager dbManager;
 
     static {
@@ -43,8 +43,12 @@ public class HelloApplication extends Application {
     public static boolean login(String username, String password) throws SQLException {
         userDetails = new UserDetails(username,password);
         boolean is_loggedIn = userDetails.login();
-//        System.out.println(userDetails.getDetails());
         return is_loggedIn;
+    }
+
+    public static boolean loginStudent(String email, String name, String profile) throws SQLException {
+        userDetails = new UserDetails();
+        return userDetails.loginStudent(email,name,profile);
     }
 
     public static boolean register(String username, String password,String secretKey,
@@ -59,7 +63,7 @@ public class HelloApplication extends Application {
         return newUserDetails.register();
     }
 
-    public static boolean logout(){
+    public static boolean logout() throws SQLException {
         return userDetails.logout();
     }
 
@@ -71,13 +75,10 @@ public class HelloApplication extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, SQLException {
         this.stage = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 640, 744);
-        stage.setTitle("SeuQuest");
-        stage.setScene(scene);
-        stage.show();
+        // check previous login
+        userDetails.checkPreviousLogin();
     }
 
     public static void main(String[] args) throws Exception {

@@ -183,8 +183,10 @@ public class AdminController implements Initializable {
                 int userId = users.getInt("id");
                 Role userRole = userDetails.getRoleFromString(users.getString("role"));
                 String username = users.getString("username");
+                boolean forgotPass = users.getBoolean("forgot_pass");
 
                 UserDetails user = new UserDetails(false,userId,username,userFullName,hasRole,userRole);
+                user.setUserForgotPass(forgotPass);
                 allUsers.add(user);
             }
             displayUsersList(allUsers);
@@ -198,7 +200,7 @@ public class AdminController implements Initializable {
         for (UserDetails user : users) {
             if(!username.equals(userDetails.getUsername())) {
                 if(!user.getUsername().equals(userDetails.getUsername())) {
-                    loadUserLayout(user.hasRole(),user.getFullName(), user.getId(), user.getRole(),user.getUsername());
+                    loadUserLayout(user);
                 }
             }
         }
@@ -212,6 +214,11 @@ public class AdminController implements Initializable {
         ).collect(Collectors.toList());
 
         displayUsersList(users);
+    }
+
+    @FXML
+    private void onClickChangePassBtn(javafx.event.ActionEvent event) throws IOException {
+        HelloApplication.changeScene("changePass-view","Change Password", 1170, 744);
     }
 
     @FXML
@@ -230,7 +237,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void onClickLogoutBtn(ActionEvent event) throws IOException {
+    public void onClickLogoutBtn(ActionEvent event) throws IOException, SQLException {
         HelloApplication.logout();
         HelloApplication.changeScene("hello-view","SeuQuest- welcome", 640, 744);
     }
@@ -255,15 +262,14 @@ public class AdminController implements Initializable {
         HelloApplication.changeScene("trainer-view","SeuQuest- Training dashboard", 1300, 744);
     }
 
-    public void loadUserLayout(boolean hasRole, String userFullName,
-                               int userId, Role userRole, String username) {
+    public void loadUserLayout(UserDetails user) {
         try {
             // Load the new FXML file
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("userInfo.fxml"));
             Parent newContent = loader.load();
 
             UserInfoController controller = loader.getController();
-            controller.setData(hasRole,userFullName,userId,userRole,username);
+            controller.setData(user);
 
             tableDataVbox.getChildren().add(newContent);
 

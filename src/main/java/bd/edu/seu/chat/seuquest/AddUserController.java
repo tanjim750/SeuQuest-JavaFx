@@ -122,7 +122,7 @@ public class AddUserController implements Initializable {
     }
 
     @FXML
-    public void onClickLogoutBtn(ActionEvent event) throws IOException {
+    public void onClickLogoutBtn(ActionEvent event) throws IOException, SQLException {
         HelloApplication.logout();
         HelloApplication.changeScene("hello-view","SeuQuest- welcome", 640, 744);
     }

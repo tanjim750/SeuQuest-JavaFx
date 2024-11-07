@@ -2,14 +2,19 @@ package bd.edu.seu.chat.seuquest.user;
 
 
 import bd.edu.seu.chat.seuquest.HelloApplication;
+import bd.edu.seu.chat.seuquest.modules.DeviceInfo;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class UserDetails{
     private boolean isAuthenticated = false;
@@ -21,8 +26,11 @@ public class UserDetails{
     private Role role;
     private String secretKey;
     private String profilePath;
+    private boolean userForgotPass = false;
 
     private DatabaseManager db = HelloApplication.dbManager;
+    private static String deviceMac = DeviceInfo.getMacAddress();
+    private static String deviceIp = DeviceInfo.getLocalIPAddress();
 
     public UserDetails() {}
 
@@ -33,6 +41,7 @@ public class UserDetails{
         this.fullName = fullName;
         this.hasRole = hasRole;
         this.role = role;
+
     }
 
     public UserDetails(String username, String password) throws SQLException {
@@ -92,8 +101,9 @@ public class UserDetails{
 
     public boolean login() throws SQLException {
         StringBuilder condition = new StringBuilder();
+        StringBuilder command = new StringBuilder(); // command to update database user mac and loggedin status
+
         condition.append("username='"+username+"' && password='"+password+"'");
-        System.out.println(condition.toString());
 
         ResultSet result = db.getByCustomCondition("users",condition.toString());
 //        System.out.println(result.next());
@@ -108,6 +118,12 @@ public class UserDetails{
                     result.getString("full_name"), true,
                     UserRole,result.getString("profile"));
 
+            command.append(
+                    "UPDATE users set loogedin=true, mac="
+                    + deviceMac
+                    +" where id="+id
+            );
+            db.customCommand(command.toString());
             return true;
         }
 
@@ -117,6 +133,7 @@ public class UserDetails{
     public boolean loginStudent(String email, String name, String profile) throws SQLException {
         StringBuilder query = new StringBuilder();
         StringBuilder createUserCommand = new StringBuilder();
+        StringBuilder loggedInCommand = new StringBuilder(); // command to update database user mac and loggedin status
 
         query.append(
                 "SELECT * FROM users WHERE username = '"
@@ -132,7 +149,7 @@ public class UserDetails{
                 + profile +"')"
         );
         ResultSet result = db.customQuery(query.toString());
-        
+
         int id = 765;
         if (result.next()) {
             id = result.getInt("id");
@@ -141,6 +158,12 @@ public class UserDetails{
         }
         
         setDetails(true,email,id,name,true,Role.STUDENT,profile);
+        loggedInCommand.append(
+                "UPDATE users set loogedin=true, mac="
+                        + deviceMac
+                        +" where id="+id
+        );
+        db.customCommand(loggedInCommand.toString());
         return true;
     }
 
@@ -178,9 +201,28 @@ public class UserDetails{
 
     }
 
-    public boolean logout() {
+    public boolean logout() throws SQLException {
+        StringBuilder command = new StringBuilder();
+        command.append(
+                "UPDATE users set loogedin=false where id= "
+                +getId()
+
+        );
+        if(deviceMac != null){
+            command.append(
+                    " && mac="
+                    +deviceMac
+            );
+        }
+
+        db.customCommand(command.toString());
         setDetails(false, null,null,null, false, Role.NONE, null);
         return true;
+    }
+
+    public void forgotPassword(String username,int id) throws SQLException {
+        this.username = username;
+        this.id = id;
     }
 
     public boolean isAuthenticated() {
@@ -220,6 +262,15 @@ public class UserDetails{
         return role;
     }
 
+    public boolean isUserForgotPass() {
+        return userForgotPass;
+    }
+
+    public void setUserForgotPass(boolean userForgotPass) {
+        this.userForgotPass = userForgotPass;
+    }
+
+
     public Map<String, Object> getDetails(){
         Map<String, Object> details = new HashMap<>();
         details.put("isAuthenticated", isAuthenticated);
@@ -231,6 +282,42 @@ public class UserDetails{
         return details;
     }
 
+    public void checkPreviousLogin() throws SQLException, IOException {
+
+        StringBuilder query = new StringBuilder();
+        query.append(
+                "SELECT * FROM users WHERE loogedin=true && mac="
+                + deviceMac
+        );
+
+        if(deviceMac == null){
+            HelloApplication.changeScene("hello-view","SeuQuest- Welcome Dashboard", 640, 744);
+            return;
+        }
+        db = HelloApplication.dbManager;
+        ResultSet result = db.customQuery(query.toString());
+        if(result.next()){
+            setDetails(
+                    true, result.getString("username"),
+                    result.getInt("id"),result.getString("full_name"),
+                    result.getBoolean("has_role"),getRoleFromString(result.getString("role")),
+                    result.getString("profile")
+            );
+
+            if(getRole() == Role.ADMIN || getRole() == Role.SUPERUSER){
+                HelloApplication.changeScene("admin-view","SeuQuest- Admin Dashboard", 1300, 744);
+            }else if(getRole() == Role.TRAINER){
+                HelloApplication.changeScene("trainer-view","SeuQuest- Training Dashboard", 1300, 744);
+            } else if (getRole() == Role.STUDENT) {
+                HelloApplication.changeScene("student-view","SeuQuest- Student Dashboard",1300,744);
+            } else{
+                HelloApplication.changeScene("chat-view","SeuQuest- Chat Dashboard", 1300, 744);
+            }
+            return;
+        }else {
+            HelloApplication.changeScene("hello-view","SeuQuest- Welcome Dashboard", 640, 744);
+        }
+    }
     public Role getRoleFromString(String StrRole){
         Role userRole;
         if(StrRole.equals("SUPERUSER")){
@@ -253,6 +340,11 @@ public class UserDetails{
 
     public Image getProfileImage() {
         Image profileImage;
+
+        if(getRole() == Role.STUDENT){
+            return new Image(profilePath);
+        }
+
         String path = "values/images/profiles/";
         if(profilePath != null){
             path = path.concat(profilePath);
